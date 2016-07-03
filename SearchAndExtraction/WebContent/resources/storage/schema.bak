@@ -1,0 +1,27 @@
+CREATE TABLE User
+(
+username varchar(255) not null,
+first varchar(255) not null,
+last varchar(255) not null,
+password varchar(255) not null,
+permlevel char(1) default 'G' not null,
+primary key(username)
+);
+
+
+CREATE TABLE Document
+(
+id int not null auto_increment,
+username varchar(255) not null,
+name varchar(255),
+permission char(1) default 'A' not null,
+primary key(id),
+foreign key(username) references User (username)
+);
+
+CREATE TABLE IF NOT EXISTS edge_table (node_1 INTEGER, node_2 INTEGER,  link_type CHAR(1), PRIMARY KEY (node_1, node_2));
+CREATE TABLE IF NOT EXISTS ii_table (word_id VARCHAR(255), node_id INTEGER, PRIMARY KEY (word_id, node_id));
+CREATE TABLE IF NOT EXISTS node_table (node_id INTEGER, k VARCHAR(255), v VARCHAR(255), doc_id INTEGER, PRIMARY KEY (node_id));
+
+//no longer using this
+CREATE TABLE IF NOT EXISTS word_table (word_id INTEGER,  word VARCHAR(255), PRIMARY KEY (word_id));
